@@ -1,0 +1,39 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #daa520;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.paragraph {
+  font-size: 1rem;
+  color: #f0f0f0;
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .paragraph {
+    font-size: 0.95rem;
+    text-align: left;
+  }
+}

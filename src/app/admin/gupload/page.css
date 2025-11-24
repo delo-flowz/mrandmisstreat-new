@@ -1,0 +1,75 @@
+/* Styles for admin gallery upload (plain CSS) */
+.gupload-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.gupload-card {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+}
+
+.gupload-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.gupload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gupload-label {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.gupload-file {
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+.gupload-btn {
+  padding: 0.6rem 0.75rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.gupload-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.gupload-feedback {
+  margin-top: 1rem;
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.gupload-feedback.success {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.gupload-feedback.error {
+  background: #fff1f2;
+  color: #991b1b;
+}
+
+.gupload-message {
+  padding: 1rem;
+  color: #374151;
+  text-align: center;
+}

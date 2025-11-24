@@ -1,0 +1,264 @@
+.safeArea {
+  background-color: black;
+  color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-top: 60px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #daa520;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #f0f0f0;
+  text-align: center;
+  margin-bottom: 30px;
+  max-width: 90%;
+}
+
+.form {
+  width: 100%;
+  max-width: 700px;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 16px;
+  color: #f0f0f0;
+  margin-bottom: 8px;
+}
+
+.input {
+  background-color: #1c1c1e;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #3a3a3c;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.webSelect,
+.webDateSelect {
+  background-color: #1c1c1e;
+  color: white;
+  padding: 12px 35px 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #3a3a3c;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 48px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 1em;
+}
+
+.datePickerWebContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.multilineInput {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.errorText {
+  color: #ff453a;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.paymentInfoContainer {
+  margin: 30px 0;
+  padding: 20px;
+  background-color: #1c1c1e;
+  border-radius: 8px;
+  border: 1px solid #daa520;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.paymentHeader {
+  font-size: 18px;
+  font-weight: 700;
+  color: #daa520;
+}
+
+.paymentText {
+  font-size: 14px;
+  color: #f0f0f0;
+  text-align: center;
+  line-height: 20px;
+}
+
+.accountDetailsBox {
+  margin-top: 10px;
+  padding: 15px;
+  background-color: black;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.accountDetails {
+  font-size: 14px;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+.accountDetailsBold {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.webFileInput {
+  color: white;
+  background-color: #1c1c1e;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #3a3a3c;
+  font-size: 14px;
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+  box-sizing: border-box;
+}
+
+.fileName {
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.button {
+  background-color: #daa520;
+  padding: 15px 20px;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 50px;
+  box-shadow: 0px 2px 4px #daa52080;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto 0 auto;
+}
+
+.button:active {
+  background-color: #b8860b;
+}
+
+.buttonDisabled {
+  background-color: #555;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.buttonText {
+  color: black;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.successBanner {
+  margin-top: 20px;
+  background-color: #4CAF50;
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 4px #00000040;
+}
+
+.successText {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Registration closed styles */
+.registrationClosed {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+}
+
+.registrationClosedBox {
+  background: linear-gradient(180deg, rgba(34,34,34,0.9), rgba(20,20,20,0.9));
+  border: 1px solid #3a3a3c;
+  padding: 40px 30px;
+  border-radius: 12px;
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+.closedTitle {
+  color: #daa520;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.closedText {
+  color: #e6e6e6;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0 auto;
+}

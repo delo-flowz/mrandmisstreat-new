@@ -1,0 +1,220 @@
+.safeArea {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: black;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 10px;
+}
+
+.scroll {
+  max-height: 50px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #3a3a3c;
+  overflow-x: auto;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #daa520;
+  text-align: center;
+  flex: 2;
+}
+
+.container {
+  flex: 1;
+  padding: 0 20px 100px;
+}
+
+.tabScrollView {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 0 20px 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabButton {
+  padding: 8px 16px;
+  background-color: #1c1c1e;
+  border-radius: 20px;
+  border: 1px solid #3a3a3c;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.tabButton:hover {
+  background-color: #3a3a3c;
+}
+
+.activeTab {
+  background-color: #daa520;
+  border-color: #daa520;
+  box-shadow: 0 0 8px #daa520;
+}
+
+.activeTab:hover {
+  background-color: #c9941a;
+}
+
+.errorText {
+  color: #ff453a;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.emptyText {
+  color: #888;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 16px;
+}
+
+.itemContainer {
+  background-color: #1c1c1e;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #3a3a3c;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.itemName {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f0f0f0;
+  flex: 1;
+  margin: 0;
+}
+
+.portraitImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-left: 10px;
+  background-color: #333;
+  object-fit: cover;
+}
+
+.itemDetail {
+  font-size: 14px;
+  color: #f0f0f0;
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.bold {
+  font-weight: bold;
+  color: #daa520;
+}
+
+.messageText {
+  font-size: 14px;
+  color: #f0f0f0;
+  background-color: #2c2c2e;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: #888;
+  text-align: right;
+  margin-top: 10px;
+}
+
+.linkButton {
+  display: inline-block;
+  background-color: #3a3a3c;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-top: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.logoutButton {
+  flex: 1;
+  text-align: right;
+  color: #ff453a;
+  font-size: 16px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sectionHeader {
+  font-size: 18px;
+  font-weight: bold;
+  color: #daa520;
+  background-color: black;
+  padding: 10px 5px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.actionContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #3a3a3c;
+  gap: 10px;
+}
+
+.actionButton {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.acceptButton { background-color: #34c759; }
+.rejectButton { background-color: #ff3b30; }
+.readButton { background-color: #007aff; }
+
+.subTabContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.subTabButton {
+  padding: 6px 12px;
+  background-color: #2c2c2e;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.activeSubTab {
+  background-color: #555;
+}

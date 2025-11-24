@@ -1,0 +1,131 @@
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  width: 100%;
+  background-color: black;
+  z-index: 100;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Desktop Navigation Styles */
+.navContainerDesktop {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  align-items: center;
+}
+
+.navLink {
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.navLinkDesktop {
+  font-size: 16px;
+  color: #f0f0f0;
+  padding: 8px;
+  display: inline-block;
+}
+
+.navLinkDesktop:hover {
+  color: #7f6921;
+}
+
+.navLinkDesktopHovered {
+  color: #7f6921;
+}
+
+.navLinkDesktopActive {
+  color: #daa520;
+  text-decoration: underline;
+}
+
+/* Mobile Menu Styles */
+.menuIconContainer {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid #daa520;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.menuIcon {
+  font-size: 28px;
+  color: #f0f0f0;
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 99;
+}
+
+.mobileMenuContainer {
+  background-color: black;
+  width: 80%;
+  max-width: 300px;
+  height: 100%;
+  padding-top: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+}
+
+.mobileNavLinksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.navLinkMobile {
+  font-size: 22px;
+  padding: 10px 0;
+  color: #f0f0f0;
+  text-decoration: none;
+  display: block;
+}
+
+.navLinkMobileActive {
+  color: #daa520;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #daa520;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.closeButtonText {
+  font-size: 40px;
+  font-weight: bold;
+  color: #f0f0f0;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .headerContainer {
+    padding: 5px 15px;
+  }
+}

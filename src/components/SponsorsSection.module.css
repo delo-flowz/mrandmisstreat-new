@@ -1,0 +1,71 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #daa520;
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 0;
+}
+
+.logosContainer {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.scrollContainer {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.scrollingLogos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  padding: 0 20px;
+  min-width: max-content;
+}
+
+.logo {
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .scrollingLogos {
+    gap: 30px;
+    padding: 0 15px;
+  }
+
+  .logo {
+    width: 150px;
+    height: 75px;
+  }
+}

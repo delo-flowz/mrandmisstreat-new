@@ -1,0 +1,27 @@
+
+.reveal {
+  display: contents;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  filter: blur(4px);
+  transition: opacity 700ms cubic-bezier(.2,.8,.2,1), transform 700ms cubic-bezier(.2,.8,.2,1), filter 700ms ease;
+  will-change: opacity, transform, filter;
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hidden,
+  .visible {
+    transition: none;
+    transform: none;
+    filter: none;
+  }
+}

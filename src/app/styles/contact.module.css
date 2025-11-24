@@ -1,0 +1,182 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #daa520;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #f0f0f0;
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 90%;
+}
+
+.contactInfoContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contactItem {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contactLabel {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #daa520;
+  margin: 0;
+}
+
+.contactValue {
+  font-size: 1rem;
+  color: #f0f0f0;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.contactValue:hover {
+  color: #daa520;
+}
+
+.separator {
+  height: 1px;
+  width: 80%;
+  background-color: #3a3a3c;
+  margin-bottom: 2rem;
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
+.form {
+  width: 100%;
+  max-width: 700px;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  font-size: 1rem;
+  color: #f0f0f0;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  background-color: #1c1c1e;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #3a3a3c;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.multilineInput {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.errorText {
+  color: #ff453a;
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+.button {
+  width: 100%;
+  background-color: #daa520;
+  color: black;
+  padding: 15px;
+  border-radius: 30px;
+  border: none;
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #b8860b;
+}
+
+.button:disabled {
+  background-color: #555;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.successBanner {
+  margin-top: 1.5rem;
+  background-color: #4CAF50;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+.successText {
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .contactInfoContainer {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .separator {
+    width: 100%;
+  }
+}

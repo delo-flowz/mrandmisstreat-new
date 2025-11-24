@@ -1,0 +1,42 @@
+.con {
+  width: 100%;
+}
+
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: black;
+}
+
+.copyrightText {
+  font-size: 12px;
+  color: #888888;
+  text-align: center;
+  margin: 0;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.linkText {
+  font-size: 12px;
+  color: #888888;
+  text-decoration: none;
+}
+
+.linkText:hover {
+  color: #daa520;
+  transition: color 0.2s ease;
+}
+
+.separator {
+  font-size: 12px;
+  color: #cccccc;
+}

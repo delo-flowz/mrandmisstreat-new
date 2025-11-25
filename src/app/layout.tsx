@@ -18,6 +18,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mr & Miss Treat Nigeria",
   description: "Mr and Miss Treat Nigeria is a prestigious pageant dedicated to discovering the most vibrant, talented, and outstanding young individuals across the nation, youths who are ready to rise, shine, and make their mark as stars.",
+  icons: {
+    icon: '/favicon.ico',
+  
+  }
 };
 
 export default function RootLayout({

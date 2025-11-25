@@ -101,11 +101,7 @@ export default function GalleryPage() {
     };
   }, []);
 
-  // We will render the gallery as a responsive CSS grid. Images will report
-  // their natural dimensions and get a `colSpan` based on aspect ratio so
-  // landscape images occupy more horizontal space than portraits.
-
-  // Compute grid row spans so items pack tightly (masonry-like).
+ 
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -148,8 +144,7 @@ export default function GalleryPage() {
 
   return (
     <main className={styles.container}>
-      <Reveal>
-
+    
       <h1 className={styles.title}>Our Gallery</h1>
       <p className={styles.subtitle}>
         A glimpse of our images
@@ -186,7 +181,7 @@ export default function GalleryPage() {
         </div>
       ) : (
         <p className={styles.emptyText}>
-          The gallery is currently empty.'.
+          The gallery is currently empty.
         </p>
       )}
 
@@ -210,7 +205,7 @@ export default function GalleryPage() {
           </div>
         </div>
       )}
-      </Reveal>
+     
     </main>
   );
 }

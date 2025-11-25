@@ -12,7 +12,9 @@ export default function HomePage() {
       <Reveal>
         <RegisterSection />
         
-        {/* <Votingbanner/> */}
+        {/*
+         <Votingbanner/> 
+         */}
         <Visionandmission />
         <Getintouch />
         <SponsorsSection />

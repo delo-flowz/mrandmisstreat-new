@@ -23,9 +23,9 @@ const Getintouch = () => {
         <div className="getintouch-section">
           <h2 className="getintouch-title">FOLLOW US</h2>
           <div className={styles.socials}>
-            <a href="https://www.instagram.com/movietreat_podcast/" className={styles.socialLink} target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.instagram.com/mrandmisstreatnigeria/" className={styles.socialLink} target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://web.facebook.com/MovietreatPodcast/" className={styles.socialLink} target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://www.tiktok.com/@movietreatpodcast" className={styles.socialLink} target="_blank" rel="noopener noreferrer">Tiktok</a>
+            <a href="https://www.tiktok.com/@mrandmisstreatnigeria" className={styles.socialLink} target="_blank" rel="noopener noreferrer">Tiktok</a>
           </div>
         </div>
       </div>

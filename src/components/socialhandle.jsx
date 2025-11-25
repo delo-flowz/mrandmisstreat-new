@@ -7,9 +7,9 @@ import styles from './socialhandle.module.css';
 const socialLinks = [
   {
     name: 'Instagram',
-    url: 'https://www.instagram.com/movietreat_podcast/',
+    url: 'https://www.instagram.com/mrandmisstreatnigeria/',
     icon: '/images/socials/instagram.png',
-    username: '@movietreat_podcast',
+    username: '@mrandmisstreatnigeria',
   },
   {
     name: 'Facebook',
@@ -25,9 +25,9 @@ const socialLinks = [
   },
   {
     name: 'TikTok',
-    url: 'https://www.tiktok.com/@movietreatpodcast',
+    url: 'https://www.tiktok.com/@mrandmisstreatnigeria',
     icon: '/images/socials/tiktok.png',
-    username: '@movietreat_podcast',
+    username: '@mrandmisstreatnigeria',
   },
 ];
 

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.84.0",
+    "@vercel/speed-insights": "^1.2.0",
     "browser-image-compression": "^2.0.2",
     "formik": "^2.4.9",
     "next": "16.0.3",

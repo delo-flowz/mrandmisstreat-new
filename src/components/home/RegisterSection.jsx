@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import './home.css';
 
-const registrationopen = false;
+const registrationopen = true;
 const RegisterSection = () => {
   const [isDesktop, setIsDesktop] = useState(true);
 
@@ -19,7 +19,7 @@ const RegisterSection = () => {
   return (
     <section className={`register-container${isDesktop ? ' register-container-desktop' : ''}`}> 
       <img
-        src="/images/backgroundimage.png"
+        src="/images/backgroundimage.jpeg"
         alt="Background"
         className="register-bg-image"
       />

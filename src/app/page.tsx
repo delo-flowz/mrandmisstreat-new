@@ -11,7 +11,8 @@ export default function HomePage() {
     <main className={styles.container}>
       <Reveal>
         <RegisterSection />
-        <Votingbanner/>
+        
+        {/* <Votingbanner/> */}
         <Visionandmission />
         <Getintouch />
         <SponsorsSection />

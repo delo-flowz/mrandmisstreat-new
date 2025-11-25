@@ -11,7 +11,7 @@ import './register.css';
 import Reveal from '@/components/Reveal';
 
 
-const registrationopen = false; 
+const registrationopen = true; 
 const currentYear = new Date().getFullYear();
 const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
 const months = [

@@ -14,7 +14,7 @@ const Footer = () => {
         </p>
         <div className={styles.linksContainer}>
           <a
-            href="https://wa.me/08100722727"
+            href="https://wa.me/2348100722727"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.linkText}

@@ -11,8 +11,8 @@ export default function VoteStatus() {
   const status = statusRaw ? statusRaw.toLowerCase() : null;
 
   useEffect(() => {
-    // Prevent user going back to Flutterwave checkout
-    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    
+     window.history.replaceState(null, "", window.location.pathname + window.location.search);
 
     if (!status) {
       // No status provided -> show 404 page
@@ -22,7 +22,8 @@ export default function VoteStatus() {
 
     // Redirect back automatically after 2 seconds
     const timer = setTimeout(() => {
-      router.back();
+       //window.history.go(-2);
+         router.replace('/vote');
     }, 3000);
 
     return () => clearTimeout(timer);

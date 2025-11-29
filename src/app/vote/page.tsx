@@ -146,20 +146,23 @@ export default function VotePage() {
     <main className={styles.content}>
       <div className={styles.voteHeader}>
         <h1 className={styles.voteTitle}>Vote for Your Favourite Contestant</h1>
-        <p className={styles.voteSubtitle}>
+        <div className={styles.voteSubtitle}>
+
+        <p>
           Show your support by picking the contestant you love and cast your vote. Every vote helps them move closer to the crown. 
+        </p>
           
           
-          <p >
+          <p>
 
           Select how many votes you'd like to give, then click on the vote button to complete your voting. 
           </p>
-          <p >
+          <p>
 
           Each vote cost the sum of 200 naria only.
           </p>
+        </div>
           
-        </p>
       </div>
       <div className={styles.voteList}>
         {loading ? (

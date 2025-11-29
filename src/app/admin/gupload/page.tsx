@@ -2,9 +2,10 @@
 "use client";
 
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { supabase } from '../../../../utils/supabase';
+import { supabase } from '@/utils/supabase';
 import imageCompression from "browser-image-compression";
 import './page.css';
+import ContestantUpload from './contestantUpload';
 
 
 
@@ -129,6 +130,10 @@ export default function GuploadPage() {
 							{message.text}
 						</div>
 					)}
+					{/* Contestant upload form */}
+					<div style={{ marginTop: 24 }}>
+						<ContestantUpload />
+					</div>
 				</div>
 			)}
 		</div>

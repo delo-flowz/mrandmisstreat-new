@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, Fragment } from 'react';
-import { supabase } from '../../../utils/supabase';
+import { supabase } from '@/utils/supabase';
 import { useRouter } from 'next/navigation';
 import styles from './admin.module.css';
 

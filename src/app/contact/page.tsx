@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { supabase } from '../../../utils/supabase';
+import { supabase } from '../../../api/utils/supabase';
 import styles from '../styles/contact.module.css';
 import Reveal from '@/components/Reveal';
 

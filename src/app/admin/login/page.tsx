@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '../../../../utils/supabase';
+import { supabase } from '../../../../api/utils/supabase';
 import styles from '../../styles/login.module.css';
 
 

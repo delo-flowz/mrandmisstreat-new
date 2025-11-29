@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from '../styles/gallery.module.css';
-import { supabase } from '../../../utils/supabase';
+import { supabase } from '@/utils/supabase';
 import Reveal from '@/components/Reveal';
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

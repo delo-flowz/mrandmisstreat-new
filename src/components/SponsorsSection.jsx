@@ -16,6 +16,8 @@ const sponsors = [
   { id: '9', image: '/images/sponsors/s9.jpg' },
   { id: '10', image: '/images/sponsors/s10.jpg' },
   { id: '11', image: '/images/sponsors/s11.jpg' },
+  { id: '12', image: '/images/sponsors/s12.jpg' },
+  { id: '13', image: '/images/sponsors/s13.jpg' },
 ];
 
 const SponsorsSection = () => {

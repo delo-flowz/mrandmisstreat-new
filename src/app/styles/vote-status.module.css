@@ -1,0 +1,102 @@
+.wrapper {
+	min-height: 70vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+	
+}
+
+.card {
+	width: 100%;
+	max-width: 420px;
+	text-align: center;
+	background: #1e1e1e ;
+	border-radius: 12px;
+	padding: 2.2rem 1.6rem;
+	box-shadow: 0 8px 30px rgba(29, 31, 34, 0.08);
+	transform-origin: center;
+	animation: popIn 420ms cubic-bezier(.2,.9,.2,1);
+}
+
+.iconWrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 1rem;
+}
+
+.check, .cross {
+	width: 88px;
+	height: 88px;
+	display: block;
+}
+
+.checkCircle, .crossCircle {
+	stroke-width: 2.4;
+	stroke: #e6f4ea;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: 157;
+	stroke-dashoffset: 157;
+	animation: circleDraw 700ms ease forwards;
+}
+
+.checkMark {
+	stroke: #1e9b4a;
+	stroke-width: 4;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: 60;
+	stroke-dashoffset: 60;
+	animation: markDraw 600ms 420ms ease forwards;
+}
+
+.crossLine {
+	stroke: #d64545;
+	stroke-width: 4;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: 32;
+	stroke-dashoffset: 32;
+	animation: crossDraw 450ms 420ms ease forwards;
+}
+
+.title {
+	font-size: 1.25rem;
+	margin: 0.25rem 0 0.35rem;
+	color: #daa520;
+}
+
+.subtitle {
+	margin: 0;
+	color: #fff;
+	font-size: 0.95rem;
+}
+
+.card :where(.check) + .title,
+.card :where(.cross) + .title {
+	/* nothing, just safe selector spacing */
+}
+
+@keyframes popIn {
+	from { transform: translateY(8px) scale(.98); opacity: 0 }
+	to { transform: translateY(0) scale(1); opacity: 1 }
+}
+
+@keyframes circleDraw {
+	to { stroke-dashoffset: 0; }
+}
+
+@keyframes markDraw {
+	to { stroke-dashoffset: 0; }
+}
+
+@keyframes crossDraw {
+	to { stroke-dashoffset: 0; }
+}
+
+.checkCircle { stroke: #dff6e9 }
+.checkMark { fill: none }
+.crossCircle { stroke: #fdeceb }
+.crossLine { fill: none }

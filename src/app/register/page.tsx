@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import location from '../../../location.json';
-import { supabase } from '../../../utils/supabase';
+import location from '@/location.json';
+import { supabase } from '@/utils/supabase';
 import './register.css';
 import Reveal from '@/components/Reveal';
 

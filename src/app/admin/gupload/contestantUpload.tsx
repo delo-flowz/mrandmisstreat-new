@@ -124,7 +124,7 @@ export default function ContestantUpload() {
             className={styles.input}
             type="text"
             value={state}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setState(e.target.value)}
             required
           />
         </div>

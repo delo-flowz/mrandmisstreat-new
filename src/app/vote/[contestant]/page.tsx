@@ -229,7 +229,14 @@ export default function ContestantPage() {
               onClick={handleShare}
               title="Share this contestant"
             >
-              {shared ? '✓ Link Copied!' : 'Share Contestant'}
+                {shared ? (
+                  '✓ Link Copied!'
+                ) : (
+                  <>
+                    <img src="/share.png" alt="Share" className={styles.shareIcon} />
+                    Share Contestant
+                  </>
+                )}
             </button>
           </div>
         </div>

@@ -11,7 +11,7 @@ export default function ContestantUpload() {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
-
+  const [state, setState] = useState("");
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files && e.target.files[0];
     if (f) setFile(f);
@@ -29,6 +29,12 @@ export default function ContestantUpload() {
       setMessage("Contestant number is required.");
       return;
     }
+    
+    if (!state.trim()) {
+      setMessage("State is required.");
+      return;
+    }
+
 
     setLoading(true);
 
@@ -64,6 +70,7 @@ export default function ContestantUpload() {
         name: name.trim(),
         contestant_number: Number(contestantNumber),
         votes: Number(0),
+        state: state.trim(),
         year: 2025,
       };
       if (imageUrl) insertObj.image = imageUrl;
@@ -75,6 +82,7 @@ export default function ContestantUpload() {
       setName("");
       setContestantNumber("");
       setVotes(0);
+      setState("");
       setFile(null);
     } catch (err: any) {
       console.error(err);
@@ -106,6 +114,17 @@ export default function ContestantUpload() {
             type="number"
             value={contestantNumber}
             onChange={(e) => setContestantNumber(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className={styles.group}>
+          <label className={styles.label}>State</label>
+          <input
+            className={styles.input}
+            type="text"
+            value={state}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>

@@ -24,7 +24,7 @@ export default function VoteStatus() {
     const timer = setTimeout(() => {
        //window.history.go(-2);
          router.replace('/vote');
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [router, status]);

@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import styles from '../../styles/vote.module.css';
+import styles from '@/app/styles/vote.module.css';
 import { supabase } from '@/utils/supabase';
 
 const COST_PER_VOTE = 100; // Cost in Naira
 
 export default function ContestantPage() {
   const params = useParams();
-  const nameFromParam = decodeURIComponent((params?.contestant as string) || '');
+  const numberFromParam = decodeURIComponent((params?.contestant as string) || '');
   const [contestant, setContestant] = useState<any | null>(null);
   const [votes, setVotes] = useState<number>(1);
   const [processing, setProcessing] = useState<boolean>(false);
@@ -19,15 +19,41 @@ export default function ContestantPage() {
 
   useEffect(() => {
     async function fetchContestant() {
-      if (!nameFromParam) return;
+      if (!numberFromParam) return;
       try {
-        const { data, error } = await supabase
+        // Try to fetch by contestant_number first
+        let { data, error } = await supabase
           .from('contestant')
           .select('*')
-          .eq('name', nameFromParam)
+          .eq('contestant_number', numberFromParam)
           .limit(1)
           .single();
-        if (!error) {
+        
+        // If not found, try contestantNumber
+        if (error) {
+          const result = await supabase
+            .from('contestant')
+            .select('*')
+            .eq('contestantNumber', numberFromParam)
+            .limit(1)
+            .single();
+          data = result.data;
+          error = result.error;
+        }
+        
+        // If still not found, try number
+        if (error) {
+          const result = await supabase
+            .from('contestant')
+            .select('*')
+            .eq('number', numberFromParam)
+            .limit(1)
+            .single();
+          data = result.data;
+          error = result.error;
+        }
+
+        if (!error && data) {
           setContestant(data);
           setError('');
         } else {
@@ -40,7 +66,7 @@ export default function ContestantPage() {
       }
     }
     fetchContestant();
-  }, [nameFromParam]);
+  }, [numberFromParam]);
 
   async function createPayment(amount: number, contestantId: any, contestantName: string) {
     const payload = { votes: amount, contestantId, name: contestantName };
@@ -67,7 +93,7 @@ export default function ContestantPage() {
     const url = typeof window !== 'undefined' ? window.location.href : '';
     const shareData = {
       title: `Vote for ${contestant?.name}`,
-      text: `Support ${contestant?.name} in the Mr & Miss Treat Contest! Every vote counts.`,
+      text: `Support ${contestant?.name} in the Mr & Miss Treat Pageantry Contest. Every vote counts.`,
       url,
     };
 
@@ -157,7 +183,7 @@ export default function ContestantPage() {
          <h1 className={styles.voteTitle}>Mr and Miss Treat Nigeria</h1>
         <div className={styles.profileHeader}>
           <h1 className={styles.contestantName}>{contestant.name}</h1>
-          <h2 className={styles.contestantName}>{contestant.state}</h2>
+          <h2 className={styles.contestantNumber}>{contestant.state}</h2>
           <p className={styles.contestantNumber}>
             Contestant No. {contestant.contestant_number ?? contestant.contestantNumber ?? contestant.number ?? '-'}
           </p>

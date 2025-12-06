@@ -12,6 +12,8 @@ export default function ContestantUpload() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [state, setState] = useState("");
+  const capitalizeWords = (value: string) =>
+    value.replace(/\b\w/g, (c) => c.toUpperCase());
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files && e.target.files[0];
     if (f) setFile(f);
@@ -102,7 +104,7 @@ export default function ContestantUpload() {
             className={styles.input}
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(capitalizeWords(e.target.value))}
             required
           />
         </div>

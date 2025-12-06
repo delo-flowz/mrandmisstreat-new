@@ -50,9 +50,9 @@ function getPercentage(votes: number, total: number) {
 	const router = useRouter();
 
 	const handleVote = () => {
-		// Route to the contestant page, passing only the contestant name as the route id
-		const nameId = encodeURIComponent(contestant.name || contestant.contestant_number || contestant.id || 'unknown');
-		router.push(`/vote/${nameId}`);
+		// Route to the contestant page, passing the contestant number as the route id
+		const numberId = encodeURIComponent(contestant.contestant_number || contestant.contestantNumber || contestant.number || contestant.name || 'unknown');
+		router.push(`/vote/contestant/${numberId}`);
 	};
 
 	  return (

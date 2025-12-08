@@ -180,7 +180,7 @@ export default function ContestantPage() {
   return (
     <main className={styles.content}>
       <div className={styles.profileContainer}>
-         <h1 className={styles.voteTitle}>Mr and Miss Treat Nigeria Contestant Voting</h1>
+         <h1 className={styles.voteTitle}>Mr and Miss Treat <p>Contestant Voting</p></h1>
         <div className={styles.profileHeader}>
           <h1 className={styles.contestantName}>{contestant.name}</h1>
           <h2 className={styles.contestantNumber}>{contestant.state}</h2>

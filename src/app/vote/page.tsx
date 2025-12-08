@@ -47,12 +47,12 @@ export default function VotePage() {
             </div>
             <div className={styles.statsContainer}>
               <div className={styles.statCard}>
-                <div className={styles.statValue}>{totalVotes}</div>
-                <div className={styles.statLabel}>Total Votes</div>
-              </div>
-              <div className={styles.statCard}>
                 <div className={styles.statValue}>{contestants.length}</div>
                 <div className={styles.statLabel}>Total Contestants</div>
+              </div>
+              <div className={styles.statCard}>
+                <div className={styles.statValue}>{totalVotes}</div>
+                <div className={styles.statLabel}>Total Votes</div>
               </div>
             </div>
             <div className={styles.voteList}>

@@ -25,9 +25,9 @@ const Header = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Gallery', href: '/gallery' },
+    { name: 'Vote', href: '/vote' },
     { name: 'Register', href: '/register' },
     { name: 'Contact', href: '/contact' },
-    { name: 'Vote', href: '/vote' },
   ];
 
   const NavLinks = () => (

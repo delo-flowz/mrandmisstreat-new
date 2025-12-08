@@ -41,7 +41,7 @@
   margin: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 500px;
-  min-width: 400px;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -321,7 +321,7 @@
 .profileHeader {
   text-align: center;
   padding: 32px 20px;
-  background: linear-gradient(135deg, rgba(218, 165, 32, 0.05), rgba(255, 140, 0, 0.05));
+  
 }
 
 .contestantName {

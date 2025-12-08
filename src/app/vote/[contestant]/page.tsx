@@ -93,7 +93,7 @@ export default function ContestantPage() {
     const url = typeof window !== 'undefined' ? window.location.href : '';
     const shareData = {
       title: `Vote for ${contestant?.name}`,
-      text: `Support ${contestant?.name} in the Mr & Miss Treat Pageantry Contest. Every vote counts.`,
+      text: `Support ${contestant?.name} in the Mr & Miss Treat Pageantry Contest. Every vote takes them a step closer to the crown.`,
       url,
     };
 
@@ -180,7 +180,7 @@ export default function ContestantPage() {
   return (
     <main className={styles.content}>
       <div className={styles.profileContainer}>
-         <h1 className={styles.voteTitle}>Mr and Miss Treat Nigeria</h1>
+         <h1 className={styles.voteTitle}>Mr and Miss Treat Nigeria Contestant Voting</h1>
         <div className={styles.profileHeader}>
           <h1 className={styles.contestantName}>{contestant.name}</h1>
           <h2 className={styles.contestantNumber}>{contestant.state}</h2>

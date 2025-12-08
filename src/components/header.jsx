@@ -27,6 +27,7 @@ const Header = () => {
     { name: 'Gallery', href: '/gallery' },
     { name: 'Register', href: '/register' },
     { name: 'Contact', href: '/contact' },
+    { name: 'Vote', href: '/vote' },
   ];
 
   const NavLinks = () => (

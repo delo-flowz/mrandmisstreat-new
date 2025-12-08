@@ -7,7 +7,7 @@ const VotingBanner = () => {
       <div className={styles.content}>
         <h2 className={styles.title}>Cast Your Vote!</h2>
         <p className={styles.description}>
-          The power is in your hands! Support your favorite contestants and help them move one step closer to the crown. Every vote counts.
+          The power is in your hands! Support your favorite contestant and help them move one step closer to the crown.
         </p>
         <a href="/vote" className={styles.voteButton}>Vote Now</a>
       </div>

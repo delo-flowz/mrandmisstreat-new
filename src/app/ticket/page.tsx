@@ -20,7 +20,7 @@ export default function TicketPage() {
         image: "/odogwu_ticket.jpg",
       
       name: "Odogwu",
-      price: "₦100k",
+      price: "₦50k",
     }
   ];
 
@@ -44,7 +44,7 @@ export default function TicketPage() {
           <div className={styles.detailsGrid}>
             <div className={styles.detailItem}>
               <span className={styles.detailLabel}>Date</span>
-              <span className={styles.detailValue}>February, 2026</span>
+              <span className={styles.detailValue}>14th February, 2026</span>
             </div>
             <div className={styles.detailItem}>
               <span className={styles.detailLabel}>Time</span>

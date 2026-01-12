@@ -8,18 +8,7 @@ import styles from './header.module.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState(null);
   const pathname = usePathname();
-  const [isDesktop, setIsDesktop] = useState(true);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth > 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -31,20 +20,16 @@ const Header = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  const NavLinks = () => (
-    <nav className={isDesktop ? styles.navContainerDesktop : styles.mobileNavLinksContainer}>
+  const NavLinks = ({ isMobile = false }) => (
+    <nav className={isMobile ? styles.mobileNavLinksContainer : styles.navContainer}>
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         return (
           <Link
             key={item.name}
             href={item.href}
-            className={`${styles.navLink} ${isDesktop ? styles.navLinkDesktop : styles.navLinkMobile} ${
-              hoveredItem === item.name && isDesktop ? styles.navLinkDesktopHovered : ''
-            } ${isActive ? (isDesktop ? styles.navLinkDesktopActive : styles.navLinkMobileActive) : ''}`}
-            onMouseEnter={() => isDesktop && setHoveredItem(item.name)}
-            onMouseLeave={() => isDesktop && setHoveredItem(null)}
-            onClick={() => isMenuOpen && setIsMenuOpen(false)}
+            className={`${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}
+            onClick={() => setIsMenuOpen(false)}
           >
             {item.name}
           </Link>
@@ -65,39 +50,36 @@ const Header = () => {
         />
       </Link>
 
-      {isDesktop ? (
-        <NavLinks />
-      ) : (
+      <NavLinks />
+
+      <button
+        className={`${styles.menuIconContainer} ${isMenuOpen ? styles.menuIconOpen : ''}`}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        <span className={styles.menuIcon}>☰</span>
+      </button>
+
+      {isMenuOpen && (
         <>
-          <button
-            className={styles.menuIconContainer}
-            onClick={() => setIsMenuOpen(true)}
-            aria-label="Open menu"
+          <div
+            className={styles.modalBackdrop}
+            onClick={() => setIsMenuOpen(false)}
           >
-            <span className={styles.menuIcon}>☰</span>
-          </button>
-          {isMenuOpen && (
-            <>
-              <div
-                className={styles.modalBackdrop}
+            <div
+              className={styles.mobileMenuContainer}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className={styles.closeButton}
                 onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
               >
-                <div
-                  className={styles.mobileMenuContainer}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <button
-                    className={styles.closeButton}
-                    onClick={() => setIsMenuOpen(false)}
-                    aria-label="Close menu"
-                  >
-                    <span className={styles.closeButtonText}>✕</span>
-                  </button>
-                  <NavLinks />
-                </div>
-              </div>
-            </>
-          )}
+                <span className={styles.closeButtonText}>✕</span>
+              </button>
+              <NavLinks isMobile={true} />
+            </div>
+          </div>
         </>
       )}
     </header>

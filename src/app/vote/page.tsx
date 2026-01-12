@@ -46,6 +46,7 @@ export default function VotePage() {
           
             </div>
               {/* 
+            */}
             <div className={styles.statsContainer}>
               <div className={styles.statCard}>
                 <div className={styles.statValue}>{contestants.length}</div>
@@ -56,7 +57,6 @@ export default function VotePage() {
                 <div className={styles.statLabel}>Total Votes</div>
               </div>
             </div>
-            */}
             <div className={styles.voteList}>
               {loading ? (
                 <div className={styles.loading}>Loading...</div>

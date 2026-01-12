@@ -168,7 +168,7 @@
 }
 
 .statsContainer {
-  display: flex;
+  display: none;
   gap: 24px;
   justify-content: center;
   width: 100%;

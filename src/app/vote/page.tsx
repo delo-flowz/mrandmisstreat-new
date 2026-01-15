@@ -28,74 +28,93 @@ export default function VotePage() {
 
         // Calculate countdown to 12am Nigerian time (WAT - UTC+1)
   useEffect(() => {
-    const calculateCountdown = async () => {
+    let serverTime: number | null = null;
+    let fetchedAt: number | null = null;
+    let retryCount = 0;
+
+    const fetchServerTime = async () => {
       try {
-        // Fetch UTC time from World Time API
+        // Fetch UTC time from World Time API once
         const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
+        if (!response.ok) {
+          if (response.status === 429) {
+            console.warn('API rate limited, using client time');
+            return;
+          }
+          throw new Error(`API error: ${response.status}`);
+        }
+        
         const data = await response.json();
         
         // Parse the datetime string to get UTC time
         const utcDateTime = new Date(data.datetime);
-        
-        // Convert to Nigerian time (UTC+1)
-        const nigerianTime = new Date(utcDateTime.getTime() + (1 * 60 * 60 * 1000));
-        
-        // Calculate midnight (12:00am) at the end of today in Nigerian time
-        const midnight = new Date(nigerianTime);
-        midnight.setDate(midnight.getDate() + 1); // Move to next day
-        midnight.setHours(0, 0, 0, 0); // Set to 00:00 (12:00am)
-        
-        const diff = midnight.getTime() - nigerianTime.getTime();
-        
-        if (diff <= 0) {
-          setCountdownTime({ hours: 0, minutes: 0, seconds: 0 });
-          setCountdownEnded(true);
-        } else {
-          const hours = Math.floor(diff / (1000 * 60 * 60));
-          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-          
-          setCountdownTime({ hours, minutes, seconds });
-          // Disable when minutes reach 00
-          if (minutes === 0 && seconds === 0) {
-            setCountdownEnded(true);
-          } else {
-            setCountdownEnded(false);
-          }
-        }
+        serverTime = utcDateTime.getTime();
+        fetchedAt = Date.now();
+        retryCount = 0; // Reset retry count on success
       } catch (err) {
         console.error('Error fetching time from API:', err);
-        // Fallback to client time if API fails
-        const now = new Date();
-        const nigerianTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Lagos' }));
-        const midnight = new Date(nigerianTime);
-        midnight.setDate(midnight.getDate() + 1);
-        midnight.setHours(0, 0, 0, 0);
+        // Use client time if API fails
+        serverTime = null;
+        fetchedAt = null;
+      }
+    };
+
+    const calculateCountdown = () => {
+      let currentTime: number;
+
+      if (serverTime !== null && fetchedAt !== null) {
+        // Use server time + elapsed client time
+        const elapsed = Date.now() - fetchedAt;
+        currentTime = serverTime + elapsed;
+      } else {
+        // Fallback to client time
+        currentTime = Date.now();
+      }
+
+      // Convert to Nigerian time (UTC+1)
+      const nigerianTime = new Date(currentTime + (1 * 60 * 60 * 1000));
+      
+      // Calculate midnight (12:00am) at the end of today in Nigerian time
+      const midnight = new Date(nigerianTime);
+      midnight.setDate(midnight.getDate() + 1); // Move to next day
+      midnight.setHours(0, 0, 0, 0); // Set to 00:00 (12:00am)
+      
+      const diff = midnight.getTime() - nigerianTime.getTime();
+      
+      if (diff <= 0) {
+        setCountdownTime({ hours: 0, minutes: 0, seconds: 0 });
+        setCountdownEnded(true);
+      } else {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         
-        const diff = midnight.getTime() - nigerianTime.getTime();
-        
-        if (diff <= 0) {
-          setCountdownTime({ hours: 0, minutes: 0, seconds: 0 });
+        setCountdownTime({ hours, minutes, seconds });
+        // Disable when minutes reach 00
+        if (minutes === 0 && seconds === 0) {
           setCountdownEnded(true);
         } else {
-          const hours = Math.floor(diff / (1000 * 60 * 60));
-          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-          setCountdownTime({ hours, minutes, seconds });
-          // Disable when minutes reach 00
-          if (minutes === 0 && seconds === 0) {
-            setCountdownEnded(true);
-          } else {
-            setCountdownEnded(false);
-          }
+          setCountdownEnded(false);
         }
       }
     };
 
-    calculateCountdown();
+    // Fetch server time once on mount
+    fetchServerTime();
+
+    // Update countdown every second using stored time
     const interval = setInterval(calculateCountdown, 1000);
     
-    return () => clearInterval(interval);
+    // Also calculate immediately
+    setTimeout(() => calculateCountdown(), 100);
+
+    // Refetch server time every 30 minutes to prevent drift (reduce API calls)
+    const refetchInterval = setInterval(fetchServerTime, 30 * 60 * 1000);
+    
+    return () => {
+      clearInterval(interval);
+      clearInterval(refetchInterval);
+    };
   }, []);
 
         // Sort by votes descending

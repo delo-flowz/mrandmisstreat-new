@@ -105,7 +105,7 @@ export default function VotePage() {
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
       setCountdownTime({ hours, minutes, seconds });
-      setCountdownEnded(false);
+      setCountdownEnded(true);
     };
 
     // Fetch server time once on mount
@@ -148,12 +148,12 @@ export default function VotePage() {
         </p>
         <div className={styles.countdownDisplay}>
           <div className={styles.countdownUnit}>
-            <span>{String(countdownTime.minutes).padStart(2, "0")}</span>
+            <span>00</span>
             <span>Minutes</span>
           </div>
           <span className={styles.countdownSeparator}>:</span>
           <div className={styles.countdownUnit}>
-            <span>{String(countdownTime.seconds).padStart(2, "0")}</span>
+            <span>00</span>
             <span>Seconds</span>
           </div>
         </div>

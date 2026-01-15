@@ -87,7 +87,7 @@ export default function ContestantPage() {
         if (minutes === 0 && seconds === 0) {
           setVotingDisabled(true);
         } else {
-          setVotingDisabled(false);
+          setVotingDisabled(true);
         }
       }
     };

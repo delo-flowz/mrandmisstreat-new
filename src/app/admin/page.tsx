@@ -35,6 +35,7 @@ const AdminDashboard = () => {
   // General state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [votingDisabled, setVotingDisabled] = useState<boolean>(false);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -456,7 +457,72 @@ const AdminDashboard = () => {
       case 'vote':
         return (
           <div>
-            <p className={styles.emptyText}>Voting feature coming soon.</p>
+            <div style={{
+              background: 'linear-gradient(135deg, #ff8c00 0%, #ff6b6b 100%)',
+              borderRadius: '12px',
+              padding: '20px',
+              marginBottom: '20px',
+              textAlign: 'center',
+              color: 'white',
+              boxShadow: '0 4px 15px rgba(255, 107, 107, 0.3)',
+              border: votingDisabled ? '2px solid #ff4444' : '2px solid rgba(255,255,255,0.2)'
+            }}>
+              <p style={{ margin: '0 0 15px 0', fontSize: '1.1rem', fontWeight: '600' }}>
+                {votingDisabled ? '🔒 Voting is Disabled' : '✅ Voting is Enabled'}
+              </p>
+              {votingDisabled && (
+                <button
+                  onClick={() => setVotingDisabled(false)}
+                  style={{
+                    padding: '10px 20px',
+                    background: 'white',
+                    color: '#ff8c00',
+                    border: 'none',
+                    borderRadius: '6px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    fontSize: '0.95rem',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.target as HTMLButtonElement).style.transform = 'scale(1.05)';
+                    (e.target as HTMLButtonElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.target as HTMLButtonElement).style.transform = 'scale(1)';
+                    (e.target as HTMLButtonElement).style.boxShadow = 'none';
+                  }}
+                >
+                  Re-enable Voting
+                </button>
+              )}
+              {!votingDisabled && (
+                <button
+                  onClick={() => setVotingDisabled(true)}
+                  style={{
+                    padding: '10px 20px',
+                    background: 'white',
+                    color: '#ff8c00',
+                    border: 'none',
+                    borderRadius: '6px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    fontSize: '0.95rem',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.target as HTMLButtonElement).style.transform = 'scale(1.05)';
+                    (e.target as HTMLButtonElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.target as HTMLButtonElement).style.transform = 'scale(1)';
+                    (e.target as HTMLButtonElement).style.boxShadow = 'none';
+                  }}
+                >
+                  Disable Voting
+                </button>
+              )}
+            </div>
           </div>
         );
       case 'tickets':

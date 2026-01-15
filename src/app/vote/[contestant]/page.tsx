@@ -14,8 +14,82 @@ export default function ContestantPage() {
   const [processing, setProcessing] = useState<boolean>(false);
   const [shared, setShared] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const [votingDisabled, setVotingDisabled] = useState<boolean>(false);
+  const [countdownTime, setCountdownTime] = useState<{hours: number, minutes: number, seconds: number}>({hours: 0, minutes: 0, seconds: 0});
 
   const totalCost = votes * COST_PER_VOTE;
+
+  // Calculate countdown to 12am Nigerian time (WAT - UTC+1)
+  useEffect(() => {
+    const calculateCountdown = async () => {
+      try {
+        // Fetch UTC time from World Time API
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
+        const data = await response.json();
+        
+        // Parse the datetime string to get UTC time
+        const utcDateTime = new Date(data.datetime);
+        
+        // Convert to Nigerian time (UTC+1)
+        const nigerianTime = new Date(utcDateTime.getTime() + (1 * 60 * 60 * 1000));
+        
+        // Calculate midnight (12:00am) at the end of today in Nigerian time
+        const midnight = new Date(nigerianTime);
+        midnight.setDate(midnight.getDate() + 1); // Move to next day
+        midnight.setHours(0, 0, 0, 0); // Set to 00:00 (12:00am)
+        
+        const diff = midnight.getTime() - nigerianTime.getTime();
+        
+        if (diff <= 0) {
+          setCountdownTime({ hours: 0, minutes: 0, seconds: 0 });
+          setVotingDisabled(true);
+        } else {
+          const hours = Math.floor(diff / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+          
+          setCountdownTime({ hours, minutes, seconds });
+          // Disable when minutes reach 00
+          if (minutes === 0 && seconds === 0) {
+            setVotingDisabled(true);
+          } else {
+            setVotingDisabled(false);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching time from API:', err);
+        // Fallback to client time if API fails
+        const now = new Date();
+        const nigerianTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Lagos' }));
+        const midnight = new Date(nigerianTime);
+        midnight.setDate(midnight.getDate() + 1);
+        midnight.setHours(0, 0, 0, 0);
+        
+        const diff = midnight.getTime() - nigerianTime.getTime();
+        
+        if (diff <= 0) {
+          setCountdownTime({ hours: 0, minutes: 0, seconds: 0 });
+          setVotingDisabled(true);
+        } else {
+          const hours = Math.floor(diff / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+          setCountdownTime({ hours, minutes, seconds });
+          // Disable when minutes reach 00
+          if (minutes === 0 && seconds === 0) {
+            setVotingDisabled(true);
+          } else {
+            setVotingDisabled(false);
+          }
+        }
+      }
+    };
+
+    calculateCountdown();
+    const interval = setInterval(calculateCountdown, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     async function fetchContestant() {
@@ -244,9 +318,9 @@ export default function ContestantPage() {
               <button 
                 className={styles.voteButton} 
                 onClick={handleMakePayment} 
-                disabled={processing || votes < 1}
+                disabled={processing || votes < 1 || votingDisabled}
               >
-                {processing ? 'Processing...' : `Vote Now (₦${totalCost.toLocaleString()})`}
+                {processing ? 'Processing...' : votingDisabled ? 'Voting Disabled' : `Vote Now (₦${totalCost.toLocaleString()})`}
               </button>
             </div>
 

@@ -593,3 +593,71 @@
     font-size: 0.75rem;
   }
 }
+
+/* Countdown Card Styles */
+.countdownCard {
+  background: linear-gradient(135deg, rgba(218, 165, 32, 0.15), rgba(255, 140, 0, 0.1));
+  border: 2px solid #daa520;
+  border-radius: 12px;
+  padding: 24px 40px;
+  margin: 20px auto;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 16px rgba(218, 165, 32, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  max-width: 500px;
+}
+
+.countdownCard:hover {
+  background: linear-gradient(135deg, rgba(218, 165, 32, 0.25), rgba(255, 140, 0, 0.15));
+  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.3);
+  transform: translateY(-4px);
+}
+
+.countdownCard.ended {
+  border-color: #ff4444;
+  box-shadow: 0 4px 16px rgba(255, 68, 68, 0.3);
+}
+
+.countdownLabel {
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.countdownDisplay {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: monospace;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.countdownUnit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdownUnit span:last-child {
+  font-size: 0.6rem;
+  margin-top: 5px;
+  font-weight: normal;
+  background: none;
+  -webkit-text-fill-color: unset;
+  color: #f0f0f0;
+}
+
+.countdownSeparator {
+  align-self: flex-start;
+  margin-top: 5px;
+}

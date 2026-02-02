@@ -85,9 +85,9 @@ export default function ContestantPage() {
         setCountdownTime({ hours, minutes, seconds });
         // Disable when minutes reach 00
         if (minutes === 0 && seconds === 0) {
-          setVotingDisabled(true);
+          setVotingDisabled(false);
         } else {
-          setVotingDisabled(true);
+          setVotingDisabled(false);
         }
       }
     };

@@ -109,7 +109,7 @@ export default function VotePage() {
       
       // Set target time to 9:00 PM today in Nigerian time
       const targetTime = new Date(nigerianTime);
-      targetTime.setHours(22, 0, 0, 0); // Set to 9:00 PM (21:00)
+      targetTime.setHours(23, 30, 0, 0); // Set to 9:00 PM (21:00)
       
       const diff = targetTime.getTime() - nigerianTime.getTime();
       

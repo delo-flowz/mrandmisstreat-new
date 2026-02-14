@@ -32,7 +32,7 @@ function getPercentage(votes: number, total: number) {
 }
 
 
-	const ContestantCard = ({ contestant, totalVotes }: { contestant: any; totalVotes: number }) => {
+	const ContestantCard = ({ contestant, totalVotes, countdownEnded }: { contestant: any; totalVotes: number; countdownEnded?: boolean }) => {
 	  const percent = getPercentage(contestant.votes, totalVotes);
 	  const [amount, setAmount] = useState<number>(1);
 	  const [processing, setProcessing] = useState<boolean>(false);
@@ -84,9 +84,9 @@ function getPercentage(votes: number, total: number) {
 					className={styles.voteButton}
 					onClick={handleVote}
 					aria-label={`Vote now for ${contestant.name}`}
-                    >
-                      <span className={styles.voteButtontext}>Vote Now</span>   
-					
+					disabled={!!countdownEnded}
+				>
+					<span className={styles.voteButtontext}>{countdownEnded ? 'Voting Closed' : 'Vote Now'}</span>
 				</button>
 			</div>
                     </div>

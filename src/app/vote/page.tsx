@@ -33,27 +33,30 @@ export default function VotePage() {
   useEffect(() => {
     let serverTime: number | null = null;
     let fetchedAt: number | null = null;
+    let retryCount = 0;
 
-    // Fetch server time from WorldTimeAPI
     const fetchServerTime = async () => {
       try {
-        const response = await fetch(
-          "https://worldtimeapi.org/api/timezone/Etc/UTC"
-        );
+        // Fetch UTC time from World Time API once
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
         if (!response.ok) {
           if (response.status === 429) {
-            console.warn("API rate limited, using client time");
+            console.warn('API rate limited, using client time');
             return;
           }
           throw new Error(`API error: ${response.status}`);
         }
-
+        
         const data = await response.json();
+        
+        // Parse the datetime string to get UTC time
         const utcDateTime = new Date(data.datetime);
         serverTime = utcDateTime.getTime();
         fetchedAt = Date.now();
+        retryCount = 0; // Reset retry count on success
       } catch (err) {
-        console.error("Error fetching time from API:", err);
+        console.error('Error fetching time from API:', err);
+        // Use client time if API fails
         serverTime = null;
         fetchedAt = null;
       }
@@ -63,61 +66,48 @@ export default function VotePage() {
       let currentTime: number;
 
       if (serverTime !== null && fetchedAt !== null) {
+        // Use server time + elapsed client time
         const elapsed = Date.now() - fetchedAt;
         currentTime = serverTime + elapsed;
       } else {
+        // Fallback to client time
         currentTime = Date.now();
       }
 
       // Convert to Nigerian time (UTC+1)
-      const nigerianTime = new Date(currentTime + 1 * 60 * 60 * 1000);
-
-      // Debug log
-      console.log(
-        "Nigerian time:",
-        nigerianTime.toLocaleTimeString("en-NG", {
-          timeZone: "Africa/Lagos",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        })
-      );
-
-      // Calculate midnight (today or tomorrow depending on current time)
-      const midnight = new Date(nigerianTime);
-      midnight.setHours(0, 0, 0, 0); // today 00:00
-
-      if (nigerianTime.getTime() >= midnight.getTime()) {
-        // Already past today’s midnight → move to next day
-        midnight.setDate(midnight.getDate() + 1);
-      }
-
-      const diff = midnight.getTime() - nigerianTime.getTime();
-
+      const nigerianTime = new Date(currentTime + (1 * 60 * 60 * 1000));
+      
+      // Set target time to 9:00 PM today in Nigerian time
+      const targetTime = new Date(nigerianTime);
+      targetTime.setHours(22, 0, 0, 0); // Set to 9:00 PM (21:00)
+      
+      const diff = targetTime.getTime() - nigerianTime.getTime();
+      
       if (diff <= 0) {
         setCountdownTime({ hours: 0, minutes: 0, seconds: 0 });
         setCountdownEnded(true);
-        return;
+      } else {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        setCountdownTime({ hours, minutes, seconds });
+        //setVotingDisabled(false);
       }
-
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      setCountdownTime({ hours, minutes, seconds });
-      setCountdownEnded(true);
     };
 
     // Fetch server time once on mount
     fetchServerTime();
 
-    // Update countdown every second
+    // Update countdown every second using stored time
     const interval = setInterval(calculateCountdown, 1000);
-    calculateCountdown(); // run immediately
+    
+    // Also calculate immediately
+    setTimeout(() => calculateCountdown(), 100);
 
-    // Refetch server time every 30 minutes to prevent drift
+    // Refetch server time every 30 minutes to prevent drift (reduce API calls)
     const refetchInterval = setInterval(fetchServerTime, 30 * 60 * 1000);
-
+    
     return () => {
       clearInterval(interval);
       clearInterval(refetchInterval);
@@ -148,12 +138,17 @@ export default function VotePage() {
         </p>
         <div className={styles.countdownDisplay}>
           <div className={styles.countdownUnit}>
-            <span>00</span>
+            <span>{String(countdownTime.hours).padStart(2, '0')}</span>
+            <span>Hours</span>
+          </div>
+          <span className={styles.countdownSeparator}>:</span>
+          <div className={styles.countdownUnit}>
+            <span>{String(countdownTime.minutes).padStart(2, '0')}</span>
             <span>Minutes</span>
           </div>
           <span className={styles.countdownSeparator}>:</span>
           <div className={styles.countdownUnit}>
-            <span>00</span>
+            <span>{String(countdownTime.seconds).padStart(2, '0')}</span>
             <span>Seconds</span>
           </div>
         </div>
@@ -175,7 +170,7 @@ export default function VotePage() {
           <div className={styles.loading}>Loading...</div>
         ) : (
           sorted.map((c, idx) => (
-            <ContestantCard key={c.id || idx} contestant={c} totalVotes={totalVotes} />
+            <ContestantCard key={c.id || idx} contestant={c} totalVotes={totalVotes} countdownEnded={countdownEnded} />
           ))
         )}
       </div>

@@ -16,11 +16,12 @@ export default function ContestantPage() {
   const [error, setError] = useState<string>('');
   const [votingDisabled, setVotingDisabled] = useState<boolean>(false);
   const [countdownTime, setCountdownTime] = useState<{hours: number, minutes: number, seconds: number}>({hours: 0, minutes: 0, seconds: 0});
+  const [countdownEnded, setCountdownEnded] = useState<boolean>(false);
 
   const totalCost = votes * COST_PER_VOTE;
 
   // Calculate countdown to 12am Nigerian time (WAT - UTC+1)
-  useEffect(() => {
+ useEffect(() => {
     let serverTime: number | null = null;
     let fetchedAt: number | null = null;
     let retryCount = 0;
@@ -67,12 +68,11 @@ export default function ContestantPage() {
       // Convert to Nigerian time (UTC+1)
       const nigerianTime = new Date(currentTime + (1 * 60 * 60 * 1000));
       
-      // Calculate midnight (12:00am) at the end of today in Nigerian time
-      const midnight = new Date(nigerianTime);
-      midnight.setDate(midnight.getDate() + 1); // Move to next day
-      midnight.setHours(0, 0, 0, 0); // Set to 00:00 (12:00am)
+      // Set target time to 9:00 PM today in Nigerian time
+      const targetTime = new Date(nigerianTime);
+      targetTime.setHours(22, 0, 0, 0); // Set to 9:00 PM (21:00)
       
-      const diff = midnight.getTime() - nigerianTime.getTime();
+      const diff = targetTime.getTime() - nigerianTime.getTime();
       
       if (diff <= 0) {
         setCountdownTime({ hours: 0, minutes: 0, seconds: 0 });
@@ -83,12 +83,7 @@ export default function ContestantPage() {
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         
         setCountdownTime({ hours, minutes, seconds });
-        // Disable when minutes reach 00
-        if (minutes === 0 && seconds === 0) {
-          setVotingDisabled(false);
-        } else {
-          setVotingDisabled(false);
-        }
+        setVotingDisabled(false);
       }
     };
 
@@ -280,6 +275,26 @@ export default function ContestantPage() {
           <p className={styles.contestantNumber}>
             Contestant No. {contestant.contestant_number ?? contestant.contestantNumber ?? contestant.number ?? '-'}
           </p>
+        </div>
+
+        <div className={`${styles.countdownCard} ${votingDisabled ? styles.ended : ''}`} style={{ marginBottom: '16px' }}>
+          <p className={styles.countdownLabel}>{votingDisabled ? 'Voting Closed' : 'Time Until Voting Closes'}</p>
+          <div className={styles.countdownDisplay}>
+            <div className={styles.countdownUnit}>
+              <span>{String(countdownTime.hours).padStart(2, '0')}</span>
+              <span>Hours</span>
+            </div>
+            <span className={styles.countdownSeparator}>:</span>
+            <div className={styles.countdownUnit}>
+              <span>{String(countdownTime.minutes).padStart(2, '0')}</span>
+              <span>Minutes</span>
+            </div>
+            <span className={styles.countdownSeparator}>:</span>
+            <div className={styles.countdownUnit}>
+              <span>{String(countdownTime.seconds).padStart(2, '0')}</span>
+              <span>Seconds</span>
+            </div>
+          </div>
         </div>
 
         <div className={styles.profileBody}>

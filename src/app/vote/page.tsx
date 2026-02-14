@@ -29,6 +29,36 @@ export default function VotePage() {
     fetchContestants();
   }, []);
 
+  // Subscribe to real-time vote updates
+  useEffect(() => {
+    const channel = supabase
+      .channel('contestant_changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'contestant',
+        },
+        (payload: any) => {
+          console.log('Real-time update received:', payload);
+          // Update the contestants list when any contestant record changes
+          setContestants(prevContestants =>
+            prevContestants.map(c =>
+              c.id === payload.new?.id ? payload.new : c
+            )
+          );
+        }
+      )
+      .subscribe((status) => {
+        console.log('Subscription status:', status);
+      });
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
   // Countdown logic
   useEffect(() => {
     let serverTime: number | null = null;

@@ -70,7 +70,7 @@ export default function ContestantPage() {
       
       // Set target time to 9:00 PM today in Nigerian time
       const targetTime = new Date(nigerianTime);
-      targetTime.setHours(24, 10, 0, 0); // Set to 9:00 PM (21:00)
+      targetTime.setHours(0, 10, 0, 0); // Set to 9:00 PM (22:00)
       
       const diff = targetTime.getTime() - nigerianTime.getTime();
       
